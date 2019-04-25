@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -23,4 +24,5 @@ public class SimpleController {
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
         return  simpleService.getList();
     }
-}
+
+    }
