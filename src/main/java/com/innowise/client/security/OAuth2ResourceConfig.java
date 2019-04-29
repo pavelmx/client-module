@@ -41,7 +41,8 @@ public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**").authenticated();
+                .antMatchers("/**").permitAll();
+
     }
 
 
