@@ -32,4 +32,10 @@ public class SimpleController {
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
         return  simpleService.getList();
     }
+
+    @GetMapping
+    public String title(){
+        return  "Resource server";
+    }
+
 }
