@@ -12,7 +12,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -51,14 +50,12 @@ public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
 
-                .antMatchers(  "/client/carsfree").permitAll()
+                .antMatchers(  "/client/home").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint());
-        http
-                .anonymous()
-                .disable();
+
 
     }
 
@@ -69,7 +66,8 @@ public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
             @Override
             public void commence(HttpServletRequest aRequest, HttpServletResponse aResponse,
                                  AuthenticationException aAuthException) throws IOException, ServletException {
-                aResponse.sendRedirect("http://localhost:8080?redirect11_url=dddd");
+                String savedURL = aRequest.getRequestURL().toString();
+                aResponse.sendRedirect("http://localhost:8080/?redirect_uri=" + savedURL);
 
             }
         };
