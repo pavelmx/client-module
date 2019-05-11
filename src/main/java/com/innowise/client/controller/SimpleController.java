@@ -22,20 +22,13 @@ public class SimpleController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/cars")
     public List<String> getCars(){
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
         return  simpleService.getList();
     }
 
 
-    @GetMapping("/carsfree")
-    public List<String> getCarsFree(){
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
-        return  simpleService.getList();
-    }
-
-    @GetMapping
-    public String title(){
-        return  "Resource server";
+    @GetMapping("/home")
+    public String getIndex(){
+        return   "Home page resources server";
     }
 
 }
