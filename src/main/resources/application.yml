@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+spring:
+
+  security:
+    oauth2:
+      client:
+        registration:
+          custom-client:
+            client-id: clientid
+            client-secret: clientsecret
+            client-name: Auth Server
+            scope: read
+            provider: custom-provider
+            redirect-uri-template: http://localhost:8081/login/oauth2/code
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+        provider:
+          custom-provider:
+            token-uri: http://localhost:8080/oauth/token
+            authorization-uri: http://localhost:8080/oauth/authorize
+            user-info-uri: http://localhost:8080/auth/user
+            user-name-attribute: name
