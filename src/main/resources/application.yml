@@ -2,23 +2,33 @@ server:
   port: 8081
 
 spring:
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        default_schema: authschema
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
 
-  security:
-    oauth2:
-      client:
-        registration:
-          custom-client:
-            client-id: clientid
-            client-secret: clientsecret
-            client-name: Auth Server
-            scope: read
-            provider: custom-provider
-            redirect-uri-template: http://localhost:8081/login/oauth2/code
-            client-authentication-method: basic
-            authorization-grant-type: authorization_code
-        provider:
-          custom-provider:
-            token-uri: http://localhost:8080/oauth/token
-            authorization-uri: http://localhost:8080/oauth/authorize
-            user-info-uri: http://localhost:8080/auth/user
-            user-name-attribute: name
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mydb
+    username: myuser
+    password: 123
+
+
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      clientId: clientid
+      clientSecret: clientsecret
+      accessTokenUri: http://localhost:8080/oauth/token
+      userAuthorizationUri: http://localhost:8080/oauth/authorize
+    resource:
+      userInfoUri: http://localhost:8080/user/me
+      id: oauth2_application
+
+

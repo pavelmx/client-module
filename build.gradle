@@ -24,9 +24,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.4.RELEASE'
-
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-//	compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.1.4.RELEASE'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
